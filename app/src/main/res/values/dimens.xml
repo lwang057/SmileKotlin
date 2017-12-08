@@ -1,0 +1,7 @@
+<resources>
+    <dimen name="nav_header_height">200dp</dimen>
+    <dimen name="app_bar_height">48dp</dimen>
+    <dimen name="iconCardCornerRadius">0dp</dimen>
+    <dimen name="avatarCardCornerRadius">0dp</dimen>
+    <dimen name="picCardMargin">1dp</dimen>
+</resources>
