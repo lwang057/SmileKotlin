@@ -222,17 +222,18 @@ class MainActivity : AppCompatActivity() {
                 System.currentTimeMillis()
             }
         }
-
         return true
     }
 
+    /**
+     * 从下边出来的提示框
+     */
+    fun showSnackbar(viewGroup: ViewGroup, text: String, duration: Int = 1000) {
 
+        val snack = Snackbar.make(viewGroup, text, duration)
+        snack.view.setBackgroundColor(ContextCompat.getColor(viewGroup.context, R.color.colorPrimary))
+        snack.show()
+    }
 }
 
 
-fun showSnackbar(viewGroup: ViewGroup, text: String, duration: Int = 1000) {
-
-    val snack = Snackbar.make(viewGroup, text, duration)
-    snack.view.setBackgroundColor(ContextCompat.getColor(viewGroup.context, R.color.colorPrimary))
-    snack.show()
-}
