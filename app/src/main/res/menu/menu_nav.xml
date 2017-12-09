@@ -11,7 +11,6 @@
             android:id="@+id/nav_pic"
             android:icon="@drawable/pic"
             android:title="花瓣福利" />
-
         <item
             android:id="@+id/nav_gif"
             android:icon="@drawable/gif"
@@ -20,8 +19,6 @@
 
     <item android:title="Other">
         <menu>
-
-
             <item
                 android:id="@+id/nav_clear"
                 android:icon="@drawable/clear"
@@ -31,8 +28,6 @@
                 android:id="@+id/nav_about"
                 android:icon="@drawable/about"
                 android:title="关于应用" />
-
-
         </menu>
     </item>
 
