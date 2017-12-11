@@ -19,6 +19,7 @@ import com.lwang.smilekotlin.R
 import com.lwang.smilekotlin.fragment.GIfFragment
 import com.lwang.smilekotlin.fragment.PicFragment
 import com.lwang.smilekotlin.fragment.TextFragment
+import com.lwang.smilekotlin.utils.ToastUtil
 import com.yhao.commen.preference
 import com.yhao.commen.util.FileUtil
 import kotlinx.android.synthetic.main.activity_main.*
@@ -68,7 +69,7 @@ class MainActivity : AppCompatActivity() {
     var mBackPressedTime by Delegates.observable(0L) { _, old, new ->
 
         if (new - old > 1000) {
-            showSnackbar(coordinatorLayout, getString(R.string.exit_message))
+            ToastUtil.showSnackbar(coordinatorLayout, getString(R.string.exit_message))
         }
         if (new - old in 1..1000) {
             mDefaultIndex = mCurrentIndex
@@ -225,15 +226,6 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-    /**
-     * 从下边出来的提示框
-     */
-    fun showSnackbar(viewGroup: ViewGroup, text: String, duration: Int = 1000) {
-
-        val snack = Snackbar.make(viewGroup, text, duration)
-        snack.view.setBackgroundColor(ContextCompat.getColor(viewGroup.context, R.color.colorPrimary))
-        snack.show()
-    }
 }
 
 

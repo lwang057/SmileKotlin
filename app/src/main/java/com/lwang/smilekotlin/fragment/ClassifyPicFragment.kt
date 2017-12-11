@@ -2,14 +2,20 @@ package com.lwang.smilekotlin.fragment
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.lwang.smilekotlin.R
+import com.lwang.smilekotlin.adapter.PicAdapter
 import com.lwang.smilekotlin.bean.Huaban
+import com.lwang.smilekotlin.service.HuabanService
+import com.lwang.smilekotlin.utils.ToastUtil
 import com.yhao.commen.notNullSingleValue
 import kotlinx.android.synthetic.main.fragment_joke_rhesis.*
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.uiThread
 import java.util.*
 import kotlin.properties.Delegates
 
@@ -65,6 +71,41 @@ class ClassifyPicFragment : Fragment() {
 
     private fun loadData() {
 
+        mLoading = true
+        doAsync {
+            val data = HuabanService.getData(mType, mPage)
+            uiThread {
+                mLoading = false
+                if (data == null) {
+                    ToastUtil.showSnackbar(view as ViewGroup, "加载失败")
+                    return@uiThread
+                }
+                if (mRecyclerView.adapter == null) {
+                    mData.addAll(data)
+                    initAdapter()
+                } else if (mPage > 1) {
+                    val pos = mData.size
+                    mData.addAll(data)
+                    mRecyclerView.adapter.notifyItemRangeInserted(pos, data.size)
+                } else {
+                    mData.clear()
+                    mData.addAll(data)
+                    mRecyclerView.adapter.notifyDataSetChanged()
+                }
+
+            }
+        }
+    }
+
+    private fun initAdapter() {
+
+        mRecyclerView.adapter = PicAdapter(mData)
+        (mRecyclerView.adapter as PicAdapter).setOnItemClick(object : PicAdapter.OnItemClickLister{
+
+            override fun onClick(view: View, url: String) {
+//                BigPicActivity.launch(this@ClassifyPicFragment.activity as AppCompatActivity, view, url)
+            }
+        })
     }
 
 
