@@ -7,10 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.lwang.smilekotlin.R
+import com.lwang.smilekotlin.adapter.JokeAdapter
 import com.lwang.smilekotlin.bean.Joke
+import com.lwang.smilekotlin.service.JokeService
+import com.lwang.smilekotlin.utils.ToastUtil
 import kotlinx.android.synthetic.main.fragment_joke_rhesis.*
 import org.jetbrains.anko.doAsync
-import java.util.ArrayList
+import org.jetbrains.anko.uiThread
+import java.util.*
 import kotlin.properties.Delegates
 
 
@@ -66,7 +70,33 @@ class JokeFragment : Fragment() {
         mLoading = true
         doAsync {
 
+            val data = JokeService.getData(mPage)
+            uiThread {
+                mLoading = false
+                if (data == null) {
+                    ToastUtil.showSnackbar(view as ViewGroup, "加载失败")
+                    return@uiThread
+                }
+                if (mRecyclerView.adapter == null) {
+                    mData.addAll(data)
+                    initAdapter()
+                } else if (mPage > 1) {
+                    val pos = mData.size
+                    mData.addAll(data)
+                    mRecyclerView.adapter.notifyItemRangeInserted(pos, data.size)
+                } else {
+                    mData.clear()
+                    mData.addAll(data)
+                    mRecyclerView.adapter.notifyDataSetChanged()
+                }
+
+            }
         }
+    }
+
+
+    private fun initAdapter() {
+        mRecyclerView.adapter = JokeAdapter(mData)
     }
 
 

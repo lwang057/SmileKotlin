@@ -6,10 +6,14 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import com.lwang.smilekotlin.R
+import com.lwang.smilekotlin.adapter.RhesisAdapter
 import com.lwang.smilekotlin.bean.Rhesis
+import com.lwang.smilekotlin.service.RhesisService
+import com.lwang.smilekotlin.utils.ToastUtil
 import kotlinx.android.synthetic.main.fragment_joke_rhesis.*
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.uiThread
 import kotlin.properties.Delegates
 
 
@@ -36,6 +40,7 @@ class RhesisFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initView()
         initEvent()
+        loadData()
     }
 
     private fun initView() {
@@ -63,6 +68,31 @@ class RhesisFragment : Fragment() {
 
     private fun loadData() {
 
+        mLoading = true
+        doAsync {
+
+            val data = RhesisService.getData()
+            uiThread {
+                mLoading = false
+                if (data == null) {
+                    ToastUtil.showSnackbar(view as ViewGroup, "加载失败")
+                    return@uiThread
+                }
+                if (mRecyclerView.adapter == null) {
+                    mData.addAll(data)
+                    initAdapter()
+                } else if (mPage > 1) {
+                    val pos = mData.size
+                    mData.addAll(data)
+                    mRecyclerView.adapter.notifyItemRangeInserted(pos, data.size)
+                }
+            }
+        }
+
+    }
+
+    private fun initAdapter() {
+        mRecyclerView.adapter = RhesisAdapter(mData)
     }
 
 

@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.lwang.smilekotlin.R
 import kotlinx.android.synthetic.main.activity_about.*
+import org.java_websocket.client.WebSocketClient
 
 class AboutActivity : AppCompatActivity() {
 
