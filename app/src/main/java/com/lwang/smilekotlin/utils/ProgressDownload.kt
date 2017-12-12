@@ -45,7 +45,7 @@ object ProgressDownload {
 
             @Throws(IOException::class)
             override fun onResponse(call: Call, response: Response) {
-                val file = File(App.instance.cacheDir,MD5Util.getHashKey(url))
+                val file = File(App.instance?.cacheDir, MD5Util.getHashKey(url))
                 val sink = Okio.buffer(Okio.sink(file))
                 val source = response.body()!!.source()
                 sink.writeAll(source)
@@ -56,7 +56,7 @@ object ProgressDownload {
     }
 
     fun exist(url: String): String? {
-        val file = File(App.instance.cacheDir, MD5Util.getHashKey(url))
+        val file = File(App.instance?.cacheDir, MD5Util.getHashKey(url))
         return if (file.exists()) file.absolutePath else null
     }
 

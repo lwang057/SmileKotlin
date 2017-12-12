@@ -46,6 +46,4 @@ dependencies {
     compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.8'
     //进度
     compile 'com.github.lzyzsd:circleprogress:1.2.1'
-    //日志
-    compile 'com.orhanobut:logger:2.1.1'
 }

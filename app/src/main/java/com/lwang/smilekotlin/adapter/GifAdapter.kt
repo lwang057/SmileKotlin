@@ -2,6 +2,7 @@ package com.lwang.smilekotlin.adapter
 
 import android.graphics.Bitmap
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -72,14 +73,20 @@ class GifAdapter(var items: List<Gif>?, val recyclerView: RecyclerView) : Recycl
                     }
                 })
                 .into(holder.gifImageView)
+
         if (mHeights.containsKey(position)) {
             holder.gifImageView.layoutParams.height = mHeights[position]!!
             holder.textView.text = items?.get(position)?.title
         }
+
         holder.gifImageView.setOnClickListener {
+
             pauseGif()
+
             ProgressDownload.downloadPhoto(items?.get(position)?.img!!, object : ProgressListener {
+
                 override fun onProgress(readByte: Long, totalByte: Long, done: Boolean) {
+
                     holder.progressBar.post {
                         holder.progressBar.visibility = View.VISIBLE
                         holder.progressBar.progress = ((readByte.toFloat() / totalByte) * 100)
@@ -87,6 +94,8 @@ class GifAdapter(var items: List<Gif>?, val recyclerView: RecyclerView) : Recycl
                 }
 
                 override fun onSave(filePath: String) {
+
+                    Log.i("wang","----------------------------"+filePath)
                     gifDrawable = GifDrawable(filePath)
                     holder.gifImageView.post {
                         holder.progressBar.visibility = View.INVISIBLE

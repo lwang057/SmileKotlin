@@ -11,12 +11,13 @@ import android.view.KeyEvent
 import android.view.MenuItem
 import android.view.View
 import com.bumptech.glide.Glide
-import com.lwang.smilekotlin.App
 import com.lwang.smilekotlin.R
 import com.lwang.smilekotlin.fragment.GIfFragment
 import com.lwang.smilekotlin.fragment.PicFragment
 import com.lwang.smilekotlin.fragment.TextFragment
 import com.lwang.smilekotlin.utils.FileUtil
+import com.lwang.smilekotlin.utils.FileUtil.Companion.getFolderSize
+import com.lwang.smilekotlin.utils.FileUtil.Companion.getPrintSize
 import com.lwang.smilekotlin.utils.ToastUtil
 import com.lwang.smilekotlin.utils.preference
 import kotlinx.android.synthetic.main.activity_main.*
@@ -113,7 +114,7 @@ class MainActivity : AppCompatActivity() {
         drawerLayout.addDrawerListener(object : DrawerLayout.SimpleDrawerListener() {
 
             override fun onDrawerClosed(drawerView: View?) {
-                navigationView.menu.findItem(R.id.nav_clear).title = "清理缓存"
+                navigationView.menu.findItem(R.id.nav_clear).title = "清除缓存"
                 mIsMenuOpen = false
             }
 
@@ -121,10 +122,9 @@ class MainActivity : AppCompatActivity() {
                 mIsMenuOpen = true
                 doAsync {
 
-                    //得到图片和app缓存
+                    //得到图片缓存
                     val glideCacheDir = Glide.getPhotoCacheDir(this@MainActivity) as File
-                    var totalSize: Long = FileUtil.getFolderSize(glideCacheDir)
-                    totalSize += FileUtil.getFolderSize(App.instance.cacheDir)
+                    var totalSize: Long = getFolderSize(glideCacheDir)
 
                     uiThread {
                         navigationView.menu.findItem(R.id.nav_clear).title = "清理缓存${FileUtil.getPrintSize(totalSize)}"
@@ -138,7 +138,7 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
                 .replace(R.id.content, mFragments[mCurrentIndex])
                 .commit()
-        Glide.with(this).load(R.drawable.yhaolpz).into(navigationView.getHeaderView(0).find(R.id.avatar))
+        Glide.with(this).load(R.drawable.icon_head).into(navigationView.getHeaderView(0).find(R.id.avatar))
     }
 
 
@@ -177,7 +177,6 @@ class MainActivity : AppCompatActivity() {
             //得到图片和app缓存
             val glideCacheDir = Glide.getPhotoCacheDir(this@MainActivity) as File
             var totalSize: Long = FileUtil.getFolderSize(glideCacheDir)
-            totalSize += FileUtil.getFolderSize(App.instance.cacheDir)
 
             uiThread {
                 if (totalSize == 0L) {
@@ -185,7 +184,7 @@ class MainActivity : AppCompatActivity() {
                     return@uiThread
                 }
 
-                item.title = "正在清理${FileUtil.getPrintSize(totalSize)}..."
+                item.title = "正在清理${getPrintSize(totalSize)}..."
                 doAsync {
                     FileUtil.deleteFolderFile(object : FileUtil.Companion.DeleteListener {
 
@@ -198,10 +197,10 @@ class MainActivity : AppCompatActivity() {
                         override fun onDelete(size: Long) {
                             uiThread {
                                 totalSize -= size
-                                item.title = "正在清理${FileUtil.getPrintSize(totalSize)}..."
+                                item.title = "正在清理${getPrintSize(totalSize)}..."
                             }
                         }
-                    }, glideCacheDir, App.instance.cacheDir)
+                    }, glideCacheDir)
                 }
             }
         }

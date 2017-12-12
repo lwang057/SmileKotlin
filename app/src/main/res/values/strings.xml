@@ -8,28 +8,13 @@
     <string name="transitionName_pic">transitionName_pic</string>
     <string name="about_app">about app</string>
     <string name="about_app_text">\n
-        1.使用 100% kotlin 语言开发\n
+        1.使用 kotlin 语言开发\n
         2.遵循 Material Design 风格\n
-        3.兼容 4.X-7.0 及各种分辨率\n
-        4.采用易源接口数据
+        3.采用易源接口数据
     </string>
     <string name="sourceCode">source code</string>
-    <string name="sourceCodeUrl">https://github.com/yhaolpz/Smile.git</string>
-    <string name="appIntroduce">introduce</string>
-    <string name="appIntroduceUrl">http://blog.csdn.net/yhaolpz/article/details/77922521</string>
+    <string name="sourceCodeUrl">https://github.com/lwang057/SmileKotlin.git</string>
     <string name="about_author">about author</string>
-    <string name="blogUrl">http://blog.csdn.net/yhaolpz</string>
-    <string name="githubUrl">https://github.com/yhaolpz</string>
-    <string name="email">yhaowa@outlook.com</string>
-    <string name="about_library">\n
-        1.org.jetbrains.kotlin:kotlin-stdlib-jre7:1.1.2-4\n
-        2.org.jetbrains.anko:anko-commons:0.10.1\n
-        3.org.jetbrains.anko:anko-coroutines:0.10.1\n
-        4.com.google.code.gson:gson:2.8.0\n
-        5.com.github.bumptech.glide:glide:4.0.0\n
-        6.pl.droidsonroids.gif:android-gif-drawable:1.2.8\n
-        7.com.squareup.okhttp3:okhttp:3.8.1\n
-        8.com.squareup.okio:okio:1.13.0\n
-        9.com.github.lzyzsd:circleprogress:1.2.1
-    </string>
+    <string name="githubUrl">https://github.com/lwang057</string>
+    <string name="email">lwang057@163.com</string>
 </resources>

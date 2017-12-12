@@ -18,7 +18,7 @@
             app:expandedTitleMarginStart="10dp"
             app:expandedTitleTextAppearance="@color/colorTabTextSecond"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:title="For Your Smile">
+            app:title="For Your SmileKotlin">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -35,7 +35,7 @@
                     <ImageView
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:src="@drawable/icon" />
+                        android:src="@drawable/icon_head" />
                 </android.support.v7.widget.CardView>
 
                 <TextView
@@ -45,8 +45,6 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="5dp"
                     android:textColor="@color/colorTabTextSecond" />
-
-
             </LinearLayout>
 
             <android.support.v7.widget.Toolbar
@@ -54,7 +52,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
-                app:navigationIcon="@drawable/titlebar_back" />
+                app:navigationIcon="@drawable/ic_arrow_back_black_24dp" />
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
@@ -174,80 +172,10 @@
                         android:paddingLeft="5dp"
                         android:paddingRight="5dp"
                         android:paddingTop="16dp"
-                        android:text="@string/appIntroduce"
-                        android:textColor="@color/colorPrimaryTextSecond"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:autoLink="web"
-                        android:paddingBottom="10dp"
-                        android:paddingLeft="20dp"
-                        android:paddingTop="10dp"
-                        android:text="@string/appIntroduceUrl"
-                        android:textColor="@color/colorPrimaryTextSecond"
-                        android:textColorLink="@color/colorPrimary"
-                        android:textSize="14sp" />
-                </LinearLayout>
-
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="15dp"
-                app:cardCornerRadius="1dp"
-                app:cardElevation="0.5dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:maxLines="1"
-                        android:paddingBottom="0dp"
-                        android:paddingLeft="5dp"
-                        android:paddingRight="5dp"
-                        android:paddingTop="16dp"
                         android:text="@string/about_author"
                         android:textColor="@color/colorPrimaryTextSecond"
                         android:textSize="16sp"
                         android:textStyle="bold" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingBottom="10dp"
-                            android:paddingLeft="20dp"
-                            android:paddingTop="10dp"
-                            android:text="blog: "
-                            android:textColor="@color/colorPrimaryTextSecond"
-                            android:textSize="14sp" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:autoLink="web"
-                            android:paddingBottom="10dp"
-                            android:paddingLeft="5dp"
-                            android:paddingTop="10dp"
-                            android:text="@string/blogUrl"
-                            android:textColor="@color/colorPrimaryTextSecond"
-                            android:textColorLink="@color/colorPrimary"
-                            android:textSize="14sp" />
-                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -309,49 +237,9 @@
 
             </android.support.v7.widget.CardView>
 
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="15dp"
-                app:cardCornerRadius="1dp"
-                app:cardElevation="0.5dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:maxLines="1"
-                        android:paddingBottom="0dp"
-                        android:paddingLeft="5dp"
-                        android:paddingRight="5dp"
-                        android:paddingTop="16dp"
-                        android:text="about library"
-                        android:textColor="@color/colorPrimaryTextSecond"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingBottom="10dp"
-                        android:paddingLeft="20dp"
-                        android:paddingTop="5dp"
-                        android:text="@string/about_library"
-                        android:textColor="@color/colorPrimaryTextSecond"
-                        android:textSize="14sp" />
-                </LinearLayout>
-
-            </android.support.v7.widget.CardView>
-
-            <TextView
+            <View
                 android:layout_width="wrap_content"
-                android:layout_height="200dp" />
+                android:layout_height="100dp" />
 
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
