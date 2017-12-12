@@ -3,25 +3,22 @@ package com.lwang.smilekotlin.activity
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
-import android.support.v4.content.ContextCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.KeyEvent
 import android.view.MenuItem
 import android.view.View
-import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.lwang.smilekotlin.App
 import com.lwang.smilekotlin.R
 import com.lwang.smilekotlin.fragment.GIfFragment
 import com.lwang.smilekotlin.fragment.PicFragment
 import com.lwang.smilekotlin.fragment.TextFragment
+import com.lwang.smilekotlin.utils.FileUtil
 import com.lwang.smilekotlin.utils.ToastUtil
-import com.yhao.commen.preference
-import com.yhao.commen.util.FileUtil
+import com.lwang.smilekotlin.utils.preference
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import org.jetbrains.anko.doAsync
@@ -133,7 +130,7 @@ class MainActivity : AppCompatActivity() {
                         navigationView.menu.findItem(R.id.nav_clear).title = "清理缓存${FileUtil.getPrintSize(totalSize)}"
                     }
                 }
-//                (mFragments[2] as GIfFragment).pas
+                (mFragments[2] as GIfFragment).pauseGif()
             }
         })
 
@@ -224,6 +221,12 @@ class MainActivity : AppCompatActivity() {
             }
         }
         return true
+    }
+
+
+    override fun onPause() {
+        super.onPause()
+        (mFragments[2] as GIfFragment).pauseGif()
     }
 
 }

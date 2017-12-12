@@ -1,4 +1,4 @@
-package com.lwang.smilekotlin.service
+package com.lwang.smilekotlin.api
 
 import com.google.gson.Gson
 import com.lwang.smilekotlin.bean.Rhesis
@@ -10,14 +10,14 @@ import java.net.URL
 /**
  * Created by lwang on 17-12-11.
  */
-class RhesisService {
+class RhesisApi {
 
     companion object {
 
         val baseUrl = "http://route.showapi.com/1211-1"
 
         fun buildBaseUrl(count: Int): String {
-            return buildUrl("$baseUrl?count=$count")
+            return buildUrl("${baseUrl}?count=$count")
         }
 
         fun getData(count: Int = 10): List<Rhesis>? {

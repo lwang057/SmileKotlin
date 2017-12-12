@@ -1,10 +1,10 @@
-package com.yhao.commen.util
+package com.lwang.smilekotlin.utils
 
 import java.io.File
 
 
 /**
- * Created by yhao on 17-9-9.
+ * Created by lwang on 17-12-12.
  *
  */
 class FileUtil {

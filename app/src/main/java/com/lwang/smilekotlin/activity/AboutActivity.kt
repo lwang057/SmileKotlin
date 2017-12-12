@@ -3,11 +3,10 @@ package com.lwang.smilekotlin.activity
 import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
 import android.graphics.Color
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import com.lwang.smilekotlin.R
 import kotlinx.android.synthetic.main.activity_about.*
-import org.java_websocket.client.WebSocketClient
 
 class AboutActivity : AppCompatActivity() {
 

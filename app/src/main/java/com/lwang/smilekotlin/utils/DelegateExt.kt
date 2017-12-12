@@ -1,4 +1,4 @@
-package com.yhao.commen
+package com.lwang.smilekotlin.utils
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -7,7 +7,7 @@ import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
 /**
- * Created by yhao on 17-9-4.
+ * Created by lwang on 17-12-12.
  * 扩展委托
  */
 

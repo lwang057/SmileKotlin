@@ -1,11 +1,9 @@
-package com.yhao.commen.util
+package com.lwang.smilekotlin.utils
 
 import android.content.Context
 import android.util.DisplayMetrics
-import android.view.WindowManager
 import android.util.TypedValue
-
-
+import android.view.WindowManager
 
 
 object ScreenUtil {

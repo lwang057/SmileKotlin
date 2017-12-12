@@ -1,4 +1,4 @@
-package com.lwang.smilekotlin.service
+package com.lwang.smilekotlin.api
 
 import com.google.gson.Gson
 import com.lwang.smilekotlin.bean.Joke
@@ -10,14 +10,14 @@ import java.net.URL
 /**
  * Created by lwang on 17-12-11.
  */
-class JokeService {
+class JokeApi {
 
     companion object {
 
         val baseUrl = "http://route.showapi.com/341-1"
 
         fun buildBaseUrl(page: Int, maxResult: Int): String {
-            return buildUrl("$baseUrl?page=$page&maxResult=$maxResult")
+            return buildUrl("${baseUrl}?page=$page&maxResult=$maxResult")
         }
 
         fun getData(page: Int, maxResult: Int = 10): List<Joke>? {

@@ -13,15 +13,15 @@ import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.lwang.smilekotlin.R
-import com.lwang.smilekotlin.bean.Huaban
-import com.yhao.commen.util.ScreenUtil
+import com.lwang.smilekotlin.bean.Pic
+import com.lwang.smilekotlin.utils.ScreenUtil
 import org.jetbrains.anko.find
-import java.util.HashMap
+import java.util.*
 
 /**
  * Created by lwang on 2017/12/11.
  */
-class PicAdapter(var items: List<Huaban>?) : RecyclerView.Adapter<PicAdapter.MyViewHolder>() {
+class PicAdapter(var items: List<Pic>?) : RecyclerView.Adapter<PicAdapter.MyViewHolder>() {
 
     private var mHeights: MutableMap<Int, Int> = HashMap()
 
@@ -31,12 +31,11 @@ class PicAdapter(var items: List<Huaban>?) : RecyclerView.Adapter<PicAdapter.MyV
                 .asBitmap()
                 .load(items?.get(position)?.thumb)
                 .transition(BitmapTransitionOptions().crossFade(800))
-                .listener(object :RequestListener<Bitmap>{
+                .listener(object : RequestListener<Bitmap> {
 
                     override fun onResourceReady(bitmap: Bitmap, model: Any?, target: Target<Bitmap>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
 
-                        val imageViewWidth = (ScreenUtil.w(holder.imageView.context)
-                                - holder.imageView.context.resources.getDimensionPixelSize(R.dimen.picCardMargin) * 4) / 2
+                        val imageViewWidth = (ScreenUtil.w(holder.imageView.context) - holder.imageView.context.resources.getDimensionPixelSize(R.dimen.picCardMargin) * 4) / 2
                         val imageViewHeight: Int = ((imageViewWidth.toDouble() / bitmap.width) * bitmap.height).toInt()
                         mHeights.put(position, imageViewHeight)
                         holder.imageView.layoutParams.height = imageViewHeight
@@ -45,19 +44,19 @@ class PicAdapter(var items: List<Huaban>?) : RecyclerView.Adapter<PicAdapter.MyV
                     }
 
                     override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Bitmap>?, isFirstResource: Boolean): Boolean {
-                       return false
+                        return false
                     }
                 })
                 .into(holder.imageView)
 
         holder.imageView.setOnClickListener({
 
-            if (mOnItemClickLister!=null){
-                mOnItemClickLister!!.onClick(holder.imageView,items?.get(position)?.thumb!!)
+            if (mOnItemClickLister != null) {
+                mOnItemClickLister!!.onClick(holder.imageView, items?.get(position)?.thumb!!)
             }
         })
 
-        if (mHeights.containsKey(position)){
+        if (mHeights.containsKey(position)) {
             holder.imageView.layoutParams.height = mHeights[position]!!
         }
     }
@@ -72,7 +71,6 @@ class PicAdapter(var items: List<Huaban>?) : RecyclerView.Adapter<PicAdapter.MyV
     class MyViewHolder(val item: View) : RecyclerView.ViewHolder(item) {
         val imageView: ImageView = item.find(R.id.pic)
     }
-
 
 
     var mOnItemClickLister: OnItemClickLister? = null

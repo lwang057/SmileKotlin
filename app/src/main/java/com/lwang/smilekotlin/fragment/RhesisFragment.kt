@@ -8,8 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.lwang.smilekotlin.R
 import com.lwang.smilekotlin.adapter.RhesisAdapter
+import com.lwang.smilekotlin.api.RhesisApi
 import com.lwang.smilekotlin.bean.Rhesis
-import com.lwang.smilekotlin.service.RhesisService
 import com.lwang.smilekotlin.utils.ToastUtil
 import kotlinx.android.synthetic.main.fragment_joke_rhesis.*
 import org.jetbrains.anko.doAsync
@@ -71,7 +71,7 @@ class RhesisFragment : Fragment() {
         mLoading = true
         doAsync {
 
-            val data = RhesisService.getData()
+            val data = RhesisApi.getData()
             uiThread {
                 mLoading = false
                 if (data == null) {

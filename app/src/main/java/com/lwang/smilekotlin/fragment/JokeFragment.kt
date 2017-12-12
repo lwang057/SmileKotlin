@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import com.lwang.smilekotlin.R
 import com.lwang.smilekotlin.adapter.JokeAdapter
 import com.lwang.smilekotlin.bean.Joke
-import com.lwang.smilekotlin.service.JokeService
+import com.lwang.smilekotlin.api.JokeApi
 import com.lwang.smilekotlin.utils.ToastUtil
 import kotlinx.android.synthetic.main.fragment_joke_rhesis.*
 import org.jetbrains.anko.doAsync
@@ -70,7 +70,7 @@ class JokeFragment : Fragment() {
         mLoading = true
         doAsync {
 
-            val data = JokeService.getData(mPage)
+            val data = JokeApi.getData(mPage)
             uiThread {
                 mLoading = false
                 if (data == null) {

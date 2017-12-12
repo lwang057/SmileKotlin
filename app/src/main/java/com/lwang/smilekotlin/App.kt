@@ -1,7 +1,7 @@
 package com.lwang.smilekotlin
 
 import android.app.Application
-import com.yhao.commen.notNullSingleValue
+import com.lwang.smilekotlin.utils.notNullSingleValue
 
 /**
  * Created by lwang on 17-12-9.

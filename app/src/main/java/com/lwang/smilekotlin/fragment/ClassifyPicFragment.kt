@@ -8,11 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.lwang.smilekotlin.R
+import com.lwang.smilekotlin.activity.BigPicActivity
 import com.lwang.smilekotlin.adapter.PicAdapter
-import com.lwang.smilekotlin.bean.Huaban
-import com.lwang.smilekotlin.service.HuabanService
+import com.lwang.smilekotlin.api.PicApi
+import com.lwang.smilekotlin.bean.Pic
 import com.lwang.smilekotlin.utils.ToastUtil
-import com.yhao.commen.notNullSingleValue
+import com.lwang.smilekotlin.utils.notNullSingleValue
 import kotlinx.android.synthetic.main.fragment_joke_rhesis.*
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
@@ -25,7 +26,7 @@ import kotlin.properties.Delegates
 class ClassifyPicFragment : Fragment() {
 
     private var mType: Int by notNullSingleValue()
-    private var mData: MutableList<Huaban> = ArrayList()
+    private var mData: MutableList<Pic> = ArrayList()
     private var mPage: Int = 1
     private var mLoading by Delegates.observable(true) { _, _, new ->
         mSwipeRefreshLayout.isRefreshing = new
@@ -73,7 +74,7 @@ class ClassifyPicFragment : Fragment() {
 
         mLoading = true
         doAsync {
-            val data = HuabanService.getData(mType, mPage)
+            val data = PicApi.getData(mType, mPage)
             uiThread {
                 mLoading = false
                 if (data == null) {
@@ -103,7 +104,7 @@ class ClassifyPicFragment : Fragment() {
         (mRecyclerView.adapter as PicAdapter).setOnItemClick(object : PicAdapter.OnItemClickLister{
 
             override fun onClick(view: View, url: String) {
-//                BigPicActivity.launch(this@ClassifyPicFragment.activity as AppCompatActivity, view, url)
+                BigPicActivity.launch(this@ClassifyPicFragment.activity as AppCompatActivity, view, url)
             }
         })
     }
